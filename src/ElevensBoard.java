@@ -53,8 +53,13 @@ public class ElevensBoard extends Board {
      */
     @Override
     public boolean isLegal(List<Integer> selectedCards) {
-
-
+        if(selectedCards.size()==2){
+        return containsPairSum11(selectedCards);
+        }
+        else if(selectedCards.size()==3){
+            return containsJQK(selectedCards);
+        }
+        else{return false;}
     }
 
     /**
@@ -81,7 +86,7 @@ public class ElevensBoard extends Board {
      */
     private boolean containsPairSum11(List<Integer> selectedCards) {
         if(selectedCards.size()==2){
-            if(cardAt(selectedCards.get(0)).pointValue()+cardAt(selectedCards.get(1)).pointValue()==11);
+            if((cardAt(selectedCards.get(0)).pointValue()+cardAt(selectedCards.get(1)).pointValue())==11)
             {
                 return true;
             }
@@ -104,9 +109,30 @@ public class ElevensBoard extends Board {
 		if(selectedCards.size()==3)
         {
             for(int k = 0; k < 2; k++){
-                if(cardAt(selectedCards.get(k)).rank() 
+                if(cardAt(selectedCards.get(k)).rank().equals("king"))
+                {
+                    numKing++;
+                }
+                if(cardAt(selectedCards.get(k)).rank().equals("queen"))
+                {
+                    numQueen++;
+                }
+                if(cardAt(selectedCards.get(k)).rank().equals("jack"))
+                {
+                    numJack++;
+                }
             }
         }
-        return true;
+        if(numJack==1){
+            if(numKing==1){
+                if(numQueen==1){
+                    return true;
+                }
+            }
+        }
+    return false;
     }
+
+
+
 }
