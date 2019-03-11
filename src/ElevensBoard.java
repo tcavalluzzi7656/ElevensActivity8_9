@@ -72,8 +72,103 @@ public class ElevensBoard extends Board {
      */
     @Override
     public boolean anotherPlayIsPossible() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-        return true;
+		List<Integer> indexes = cardIndexes();
+        int two=0;
+        int three=0;
+        int four=0;
+        int five=0;
+        int six=0;
+        int seven=0;
+        int eight=0;
+        int nine=0;
+        int ten=0;
+        int jack=0;
+        int queen=0;
+        int king=0;
+        int ace=0;
+		for(int i=0;i<indexes.size();i++)
+        {
+            if(cardAt(indexes.get(i)).rank().equals("ace"))
+            {
+                ace++;
+            }
+            if(cardAt(indexes.get(i)).rank().equals("2"))
+            {
+                two++;
+            }
+            if(cardAt(indexes.get(i)).rank().equals("3"))
+            {
+                three++;
+            }
+            if(cardAt(indexes.get(i)).rank().equals("4"))
+            {
+                four++;
+            }
+            if(cardAt(indexes.get(i)).rank().equals("5"))
+            {
+                five++;
+            }
+            if(cardAt(indexes.get(i)).rank().equals("6"))
+            {
+                six++;
+            }
+            if(cardAt(indexes.get(i)).rank().equals("7"))
+            {
+                seven++;
+            }
+            if(cardAt(indexes.get(i)).rank().equals("8"))
+            {
+                eight++;
+            }
+            if(cardAt(indexes.get(i)).rank().equals("9"))
+            {
+                nine++;
+            }
+            if(cardAt(indexes.get(i)).rank().equals("10"))
+            {
+                ten++;
+            }
+            if(cardAt(indexes.get(i)).rank().equals("jack"))
+            {
+                jack++;
+            }
+            if(cardAt(indexes.get(i)).rank().equals("queen"))
+            {
+                queen++;
+            }
+            if(cardAt(indexes.get(i)).rank().equals("king"))
+            {
+                king++;
+            }
+
+        }
+
+
+        if(two>0&&nine>0)
+        {
+            return true;
+        }
+        if(three>0&&eight>0)
+        {
+            return true;
+        }
+        if(four>0&&seven>0)
+        {
+            return true;
+        }
+        if(five>0&&six>0)
+        {
+            return true;
+        }
+        if(jack>0&&queen>0&&king>0)
+        {
+            return true;
+        }
+        if(ten>0&&ace>0)
+        {
+            return true;
+        }
+        else{return false;}
     }
 
     /**
@@ -108,7 +203,7 @@ public class ElevensBoard extends Board {
         int numKing = 0;
 		if(selectedCards.size()==3)
         {
-            for(int k = 0; k < 2; k++){
+            for(int k = 0; k < 3; k++){
                 if(cardAt(selectedCards.get(k)).rank().equals("king"))
                 {
                     numKing++;
